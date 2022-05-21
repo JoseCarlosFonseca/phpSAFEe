@@ -1,0 +1,21 @@
+<script src='http://localhost:80/phpSAFE2e/jquery.js'/>      <script>
+         $(document).ready(function() {
+        $("td").mouseover(function() {
+          if (this.innerText)
+             $("td:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("td").mouseout(function() {
+          if (this.innerText)
+            $("td:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+        $("th").mouseover(function() {
+          if (this.innerText)
+           $("th:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("th").mouseout(function() {
+          if (this.innerText)
+            $("th:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+      });
+      </script><style>tr:nth-child(even) {background: #eee} tr:nth-child(odd) {background: #FFF} table, td, th {padding:4px; border: 1px solid black;border-collapse: collapse;}</style><h1 style='color:black;'>Vulnerable Variables</h1><p><span id='S_outputtestloginphp_1Vulnhtml' onclick="var o = document.getElementById('outputtestloginphp_1Vulnhtml'); if (o.style.display == 'block') {o.style.display = 'none'; document.getElementById(this.id).innerHTML = 'Show';} else { o.style.display = 'block';document.getElementById(this.id).innerHTML = 'Hide';}"style='border:1px solid black;padding:3px;background-color:#eee;'>Show</span> Count: 1</p><table id='outputtestloginphp_1Vulnhtml' style='display:block;border:none;'><tr><th>#</th> <th>Initial parsed file</th><th>index</th><th>name</th><th>object</th><th>class</th><th>scope</th><th>variable_function</th><th>exist_destroyed</th><th>code_type</th><th>input</th><th>output</th><th>function</th><th>file</th><th>line</th><th>tainted</th><th>vulnerability</th><th>start_index</th><th>end_index</th><th>dependencies_index</th><th>variable_filter</th><th>variable_revert_filter</th><th>sensitive_sink</th><th>sensitive_sink_vulnerability</th></tr><tr>
+<tr><td>0</td><td>login.php</td><td >9  </td><td >$sql  </td><td >  </td><td >  </td><td >local  </td><td >variable  </td><td >exist  </td><td >php code  </td><td >regular  </td><td >output  </td><td >function  </td><td ><a href='http://localhost:80/phpSAFE2e/show_php_file.php?file=C:\xampp74\htdocs\phpSAFE2e\source\test\login.php&line_mark=5&line_end=4&variable_name=%24sql&text=Vulnerable Variables&dependence_variables=YTo0OntpOjA7czo3OiJSRVFVRVNUIjtpOjE7czo0OiJQT1NUIjtpOjI7czozOiJHRVQiO2k6MztzOjY6IiUyNHNxbCI7fQ%3D%3D#target_mark'>C:\xampp74\htdocs\phpSAFE2e\source\test\login.php</a>  </td><td >5  </td><td style='color:red;'>tainted  </td><td style='background-color: lightgreen;'>SQL Injection  </td><td >31  </td><td >31  </td><td><table><tr><td>4</td></tr></table></td><td >  </td><td >  </td><td >mysqli_query  </td><td style='background-color: lightgreen;'>SQL Injection  </td><tr></table>

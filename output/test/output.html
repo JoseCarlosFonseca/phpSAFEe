@@ -1,0 +1,30 @@
+<h1>Test was done on -VOD16_</h1> 
+ 				<script src='http://localhost:80/phpSAFE2e/jquery.js'/>
+				<script src='../../jquery.js'/>
+      <script>
+         $(document).ready(function() {
+        $("td").mouseover(function() {
+          if (this.innerText)
+             $("td:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("td").mouseout(function() {
+          if (this.innerText)
+            $("td:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+        $("th").mouseover(function() {
+          if (this.innerText)
+           $("th:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("th").mouseout(function() {
+          if (this.innerText)
+            $("th:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+      });
+      </script> 
+<table>
+<style>table, td, th {padding:4px; border: 1px solid black;border-collapse: collapse;}</style><tr><td>#</td><td>plugin</td><td>parsed_file_ini</td><td>parsed_file</td><td>Total Vulns</td><td>XSS</td><td>SQLi</td><td>time</td><td>value</td><td>#files</td><td>SLOC</td></tr>
+<tr><td>1</td><td>test</td><td>login.php</td><td>tdocs/phpSAFE2e/source/test/login.php</td><td style='color:red'>1</td><td>      0.001</td><td>source/test/login.php</td><td>1</td><td>6</td></tr>
+<tr><td>2</td><td>test</td><td>testSQLiXSS.php</td><td>tdocs/phpSAFE2e/source/test/testSQLiXSS.php</td><td style='color:red'>2</td><td>      0.001</td><td>source/test/testSQLiXSS.php</td><td>1</td><td>7</td></tr>
+<tr><td></td><td></td><td></td><td></td><td style='color:red'>3</td><td>2</td><td>4</td><td>      0.002</td><td></td><td>2</td><td>num_lines_of_code</td></tr>
+</table>
+<tr><td></td><td></td><td></td><td></td><td style='color:red'>3</td><td>2</td><td>4</td><td>      0.002</td><td></td><td>2</td><td>num_lines_of_code</td></tr>
