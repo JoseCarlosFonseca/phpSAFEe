@@ -52,6 +52,6 @@ while ($item = readdir($dir)) {
         $html .= "<td>$x $i <br> $files</td><td>$link</td></td><td>$script</td></tr>";
     }
 }
-$html = "<h1>phpSAFE - PHP Security Analysis For Everyone: multiple projects</h1>" . $html . "</table>";
+$html = "<h1>phpSAFEe - PHP Security Analysis For Everyone: multiple projects</h1>" . $html . "</table>";
 echo $html;
 

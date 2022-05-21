@@ -2,7 +2,7 @@
 
 /**
  *
- * phpSAFE - PHP Security Analysis For Everyone
+ * phpSAFEe - PHP Security Analysis For Everyone
  *
  * Copyright (C) 2013 by Jose Fonseca (jozefonseca@gmail.com)
  *
@@ -1105,7 +1105,12 @@ _END;
 						$_start_line_of_the_function_that_calls = $files_functions[$i][_PHPI_START_LINE];
 
             //echo "<p>$function_that_calls_function ($parameters)</p>";
-            for ($j = 0, $jcount = count($files_functions[$i][_PHPI_CALLED_FUNCTIONS]); $j < $jcount; $j++) {
+			if (is_array($files_functions[$i][_PHPI_CALLED_FUNCTIONS])) { //fix
+				$count_files_functions_PHPI_CALLED_FUNCTIONS = count($files_functions[$i][_PHPI_CALLED_FUNCTIONS]);
+			} else {
+				$count_files_functions_PHPI_CALLED_FUNCTIONS = 0;
+			}
+            for ($j = 0, $jcount = $count_files_functions_PHPI_CALLED_FUNCTIONS; $j < $jcount; $j++) {
 								$called_fun = $files_functions[$i][_PHPI_CALLED_FUNCTIONS][$j];
                /* foreach ($called_fun as $k => $v) {
                     echo "<p>$k ----------- $v</p>";
@@ -2112,8 +2117,19 @@ _END;
         foreach ($this->files->files_tokens as $file_name => $dummy) {
             $this->include_php_files_functions($file_name);
         }
-        for ($i = 0, $count = count($this->files_functions); $i < $count; $i++) {
-            for ($j = 0, $jcount = count($this->files_functions[$i][_PHPI_CALLED_FUNCTIONS]); $j < $jcount; $j++) {
+		if (is_array($this->files_functions)) {
+			$count_this_files_functions = count($this->files_functions);
+		} else {
+			$count_this_files_functions = 0;
+		}
+		
+        for ($i = 0, $count = $count_this_files_functions; $i < $count; $i++) {
+			if (is_array ($this->files_functions[$i][_PHPI_CALLED_FUNCTIONS])) {
+			$count_this_files_functions_PHPI_CALLED_FUNCTIONS = count($this->files_functions[$i][_PHPI_CALLED_FUNCTIONS]); 
+		}   else {
+			$count_this_files_functions_PHPI_CALLED_FUNCTIONS = 0;
+		}
+            for ($j = 0, $jcount = $count_this_files_functions_PHPI_CALLED_FUNCTIONS; $j < $jcount; $j++) {
                 $called_function_name = $this->files_functions[$i][_PHPI_CALLED_FUNCTIONS][$j][_PHPI_NAME];
 //add the function to the $used_functions array
                 $called_class_name = $this->files_functions[$i][_PHPI_CALLED_FUNCTIONS][$j][_PHPI_CLASS];
@@ -2442,9 +2458,18 @@ _END;
 
         // determinate the context of the function calls: called_file_name and called_class_name
         // adds to files_functions_lookup[]
-
-        for ($i = 0, $count = count($this->files_functions); $i < $count; $i++) {
-            for ($j = 0, $jcount = count($this->files_functions[$i][_PHPI_CALLED_FUNCTIONS]); $j < $jcount; $j++) {
+        if (is_array ($this->files_functions)) {
+			$count_this_files_functions = count($this->files_functions); 
+		}   else {
+			$count_this_files_functions = 0;
+		}
+        for ($i = 0, $count = $count_this_files_functions; $i < $count; $i++) {
+			if (is_array ($this->files_functions[$i][_PHPI_CALLED_FUNCTIONS])) {
+				$count_this_files_functions_PHPI_CALLED_FUNCTIONS = count($this->files_functions[$i][_PHPI_CALLED_FUNCTIONS]); 
+			}   else {
+				$count_this_files_functions_PHPI_CALLED_FUNCTIONS = 0;
+			}
+            for ($j = 0, $jcount = $count_this_files_functions_PHPI_CALLED_FUNCTIONS; $j < $jcount; $j++) {
                 //$called_function_name = strtoupper($this->files_functions[$i][_PHPI_CALLED_FUNCTIONS][$j][_PHPI_NAME]);
 //        for ($k = 0; $k < $count; $k++) {
 //          if ($this->files_functions[$k][_PHPI_NAME] === $called_function_name) {
@@ -2975,7 +3000,12 @@ _END;
 
                 $parse_again = false;
 //store the include/require information int the multi-dimensional array variable $files_include_require
-                for ($i = 0, $count = count($this->files_include_require); $i < $count; $i++) {
+				if (is_array($this->files_include_require)) {
+					$count_this_files_include_require = count($this->files_include_require);
+				} else {
+					$count_this_files_include_require = 0 ;
+				}
+                for ($i = 0, $count = $count_this_files_include_require; $i < $count; $i++) {
 //check if the included/required file has already been included
                     if (($file_name_include === $this->files_include_require[$i]['include_require_file_name']) && ($include_require === $this->files_include_require[$i]['include_require'])) {
 //the file has already been included/required once

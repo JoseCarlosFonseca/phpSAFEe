@@ -2,7 +2,7 @@
 
 /**
  *
- * phpSAFE - PHP Security Analysis For Everyone
+ * phpSAFEe - PHP Security Analysis For Everyone
  *
  * Copyright (C) 2013 by Jose Fonseca (jozefonseca@gmail.com)
  *
@@ -53,7 +53,7 @@
  *
  *
  */
-define('APP', 'phpSAFE - PHP Security Analysis For Everyone');
+define('APP', 'phpSAFEe - PHP Security Analysis For Everyone');
 
  if (isset($_SERVER['SERVER_PORT'])) {
 	$port = $_SERVER['SERVER_PORT'];
@@ -224,7 +224,11 @@ class PHP_SAFE extends PHP_Parser
          */
         $first_called_function_variable_index = count($this->parser_variables);
         $parameter_number = 0;
-        $max_parameter_number = count($this->files_functions[$called_function_index][_PHPI_PARAMETERS]);
+		if (is_array($this->files_functions[$called_function_index][_PHPI_PARAMETERS])) {
+			$max_parameter_number = count($this->files_functions[$called_function_index][_PHPI_PARAMETERS]);			
+		} else {
+			$max_parameter_number =  0;
+		}
         for ($i = $block_start_index + 1; $i < $block_end_index; $i++) {
             //get the argument of the call of the function
             $next_argument_index = $this->find_token($file_name, $i, ',');
@@ -357,7 +361,11 @@ class PHP_SAFE extends PHP_Parser
                     // $this->parser_variables[$n][_PHPI_DEPENDENCIES_INDEX] = null;
                     // update dependencies according with new positions (index dep - index)= shift
                     // $i - index
-                    $nd = count($this->parser_variables[$i][_PHPI_DEPENDENCIES_INDEX]);
+					if (is_array($this->parser_variables[$i][_PHPI_DEPENDENCIES_INDEX])){
+						$nd = count($this->parser_variables[$i][_PHPI_DEPENDENCIES_INDEX]);
+					} else {
+						$nd = 0;
+					}
                     for ($j = 0; $j < $nd; $j++) {
                         $old_index = $this->parser_variables[$i][_PHPI_DEPENDENCIES_INDEX][$j];
                         if (is_numeric($old_index)) {
@@ -453,7 +461,11 @@ class PHP_SAFE extends PHP_Parser
                 // variable in the body, local parameters and others.
                 //for ($k = $parser_variables_count_after; $k >= $parser_variables_count_before; $k--) {
                 for ($k = $parser_variables_count_before; $k <= $parser_variables_count_after; $k++) {
-                    $n = count($this->parser_variables[$k][_PHPI_DEPENDENCIES_INDEX]);
+					if (is_array($this->parser_variables[$k][_PHPI_DEPENDENCIES_INDEX])) {
+						$n = count($this->parser_variables[$k][_PHPI_DEPENDENCIES_INDEX]);	
+					} else {
+						$n = 0;
+					}
                     if ($n > 0) {
                         $vn = $this->parser_variables[$k][_PHPI_NAME];
                         //variable_filter	variable_revert_filter
@@ -706,8 +718,18 @@ class PHP_SAFE extends PHP_Parser
 
         //secho "<p style='color:red'>OOP_z" . $called_function_name_b . "</p>";
 
-
-        for ($used_functions_index = 0, $count = count($this->used_functions); $used_functions_index < $count; $used_functions_index++) {
+		if (is_array($this->used_functions)){
+			$this_used_functions = count($this->used_functions);
+		} else {
+			$this_used_functions = 0;
+		}
+		$output_variable_attribute = ''; // fix
+		$vulnerability_classification = ''; //fix
+		$is_other_function  = '0'; //fix;
+		$input_function_variable = ''; //fix
+		$is_filtering_function = ''; //fix
+		$is_revert_filtering_function = ''; //fix
+        for ($used_functions_index = 0, $count = $this_used_functions; $used_functions_index < $count; $used_functions_index++) {
             $called_function_name_a = $this->used_functions[$used_functions_index][_PHPI_FILE] . '#' . $this->used_functions[$used_functions_index][_PHPI_CLASS] . '#' . $this->used_functions[$used_functions_index][_PHPI_NAME];
             //echo "<p style='color:blue'>$used_functions_index " .  $called_function_name_a . " - $called_function_name_b </p>";
             $called_function_name_a = $this->used_functions[$used_functions_index][_PHPI_NAME];
@@ -1130,19 +1152,19 @@ class PHP_SAFE extends PHP_Parser
                 if (is_null($used_function_index)) {
                     continue;
                     //it is a user defined PHP function from which we have the source code
-                } elseif ('user defined' === $this->used_functions[$used_function_index][_PHPI_USER_DEFINED]) {
+                } elseif ( isset($this->used_functions[$used_function_index][_PHPI_USER_DEFINED]) && (('user defined' === $this->used_functions[$used_function_index][_PHPI_USER_DEFINED]))) {
                     //search for the return value of the function
                     //return a value if the function is a user defined function with a return value
                     //return null if there is no variable
                     if (is_null($variable_index)) {
                         continue;
                     }
-                } elseif ('other' === $this->used_functions[$used_function_index][_PHPI_OTHER]) {
+                } elseif (isset($this->used_functions[$used_function_index][_PHPI_OTHER]) && ('other' === $this->used_functions[$used_function_index][_PHPI_OTHER])) {
                     //search for the return value of the function
                     //return a value if the function is a user defined function with a return value
                     //return null if there is no variable
                     $variable_index = count($this->parser_variables) - 1;
-                } elseif ('revert filter' === $this->used_functions[$used_function_index][_PHPI_REVERT_FILTER]) {
+                } elseif (isset($this->used_functions[$used_function_index][_PHPI_REVERT_FILTER]) && ('revert filter' === $this->used_functions[$used_function_index][_PHPI_REVERT_FILTER])) {
                     //search for the return value of the function
                     //return a value if the function is a user defined function with a return value
                     //return null if there is no variable
@@ -1695,11 +1717,21 @@ class PHP_SAFE extends PHP_Parser
     function set_vulnerable_variables()
     {
         $this->vulnerable_variables = array();
-        for ($i = 0, $count_parser_variables = count($this->parser_variables); $i < $count_parser_variables; $i++) {
+		if (is_array($this->parser_variables)){
+			$count_this_parser_variables = count($this->parser_variables);
+		} else {
+			$count_this_parser_variables = 0;
+		}
+        for ($i = 0, $count_parser_variables = $count_this_parser_variables; $i < $count_parser_variables; $i++) {
 
             //remove duplicate vulnerable variables
             $exist = false;
-            for ($j = 0, $count_vulnerable_variables = count($this->vulnerable_variables); $j < $count_vulnerable_variables; $j++) {
+			if (is_array($this->vulnerable_variables)) {
+				$count_this_vulnerable_variables = count($this->vulnerable_variables);
+			} else {
+				$count_this_vulnerable_variables = 0;
+			}
+            for ($j = 0, $count_vulnerable_variables = $count_this_vulnerable_variables; $j < $count_vulnerable_variables; $j++) {
                 if (($this->parser_variables[$i][_PHPI_NAME] === $this->vulnerable_variables[$j][_PHPI_NAME])
                     && ($this->parser_variables[$i][_PHPI_FILE] === $this->vulnerable_variables[$j][_PHPI_FILE])
                     && ($this->parser_variables[$i][_PHPI_LINE] === $this->vulnerable_variables[$j][_PHPI_LINE])
@@ -1730,7 +1762,12 @@ class PHP_SAFE extends PHP_Parser
     function set_output_variables()
     {
         $this->output_variables = array();
-        for ($i = 0, $count = count($this->parser_variables); $i < $count; $i++) {
+		if (is_array($this->parser_variables)) {
+			$count_this_parser_variables = count($this->parser_variables);
+		} else {
+			$count_this_parser_variables = 0;
+		}
+        for ($i = 0, $count = $count_this_parser_variables; $i < $count; $i++) {
             $variable = $this->parser_variables[$i];
             if ((OUTPUT_VARIABLE === $variable[_PHPI_OUTPUT])) {
                 //add $parser_variables index
@@ -1750,11 +1787,21 @@ class PHP_SAFE extends PHP_Parser
     function set_non_vulnerable_variables()
     {
         $this->non_vulnerable_variables = array();
-        for ($i = 0, $count_parser_variables = count($this->parser_variables); $i < $count_parser_variables; $i++) {
+		if (is_array($this->parser_variables)) {
+			$count_this_parser_variables= count($this->parser_variables);
+		} else {
+			$count_this_parser_variables = 0;
+		}
+        for ($i = 0, $count_parser_variables = $count_this_parser_variables ; $i < $count_parser_variables; $i++) {
 
             //remove duplicate vulnerable variables
             $exist = false;
-            for ($j = 0, $count_non_vulnerable_variables = count($this->non_vulnerable_variables); $j < $count_non_vulnerable_variables; $j++) {
+			if (is_array($this->non_vulnerable_variables)) {
+				$count_this_non_vulnerable_variables = count($this->non_vulnerable_variables);
+			} else {
+				$count_this_non_vulnerable_variables = 0;
+			}
+            for ($j = 0, $count_non_vulnerable_variables = $count_this_non_vulnerable_variables; $j < $count_non_vulnerable_variables; $j++) {
                 if (($this->parser_variables[$i][_PHPI_NAME] === $this->non_vulnerable_variables[$j][_PHPI_NAME])
                     && ($this->parser_variables[$i][_PHPI_FILE] === $this->non_vulnerable_variables[$j][_PHPI_FILE])
                     && ($this->parser_variables[$i][_PHPI_LINE] === $this->non_vulnerable_variables[$j][_PHPI_LINE])

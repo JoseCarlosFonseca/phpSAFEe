@@ -2,7 +2,7 @@
 
 /**
 
-  phpSAFE - PHP Security Analysis For Everyone
+  phpSAFEe - PHP Security Analysis For Everyone
 
   Copyright (C) 2013 by Jose Fonseca (jozefonseca@gmail.com)
 

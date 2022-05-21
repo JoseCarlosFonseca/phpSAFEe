@@ -9,9 +9,10 @@
 <?php
 /**
  *
- * phpSAFE - PHP Security Analysis For Everyone
+ * phpSAFEe - PHP Security Analysis For Everyone
  *
  * Copyright (C) 2013 by Jose Fonseca (jozefonseca@gmail.com)
+ * Copyright (C) 2021 by Paulo Nunes (pnunes100@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -180,9 +181,9 @@ _END;
         $output_text .= "<td>Total Vulns</td>";
         $output_text .= "<td>XSS</td>";
         $output_text .= "<td>SQLi</td>";
-        $output_text .= "<td>Time</td>";
-        $output_text .= "<td>Files</td>";
-        $output_text .= "<td>#Files</td>";
+        $output_text .= "<td>time</td>";
+        $output_text .= "<td>value</td>";
+        $output_text .= "<td>#files</td>";
         $output_text .= "<td>SLOC</td>";
         $output_text .= "</tr>";
         fprintf($output_file, "%s\n", $output_text) or die("Could not write to file");
@@ -212,7 +213,6 @@ _END;
         $total_num_vulnerabilities = 0;
         $total_num_vulnerabilities_XSS = 0;
         $total_num_vulnerabilities_SQLi = 0;
-		$total_num_lines_of_code = 0;
         $total_time = 0;
         $more = 0;
         $less = 0;
@@ -235,13 +235,12 @@ _END;
 
 
             $num_vulnerabilities = count($vulnerability_check->get_vulnerable_variables());
-            $num_non_vulnerabilities += count($vulnerability_check->get_non_vulnerable_variables());
-            $num_parser_variables += count($vulnerability_check->get_parser_variables());
-            $num_parser_variables_file = count($vulnerability_check->get_parser_variables());
-            $num_output_variables = count($vulnerability_check->get_parser_variables());
+            $num_non_vulnerabilities += is_array(($vulnerability_check->get_non_vulnerable_variables())) ? count($vulnerability_check->get_non_vulnerable_variables()):0;
+            $num_parser_variables += is_array(($vulnerability_check->get_parser_variables()))? count($vulnerability_check->get_parser_variables()):0;
+            $num_parser_variables_file = is_array(($vulnerability_check->get_parser_variables())) ? count($vulnerability_check->get_parser_variables()):0;
+            $num_output_variables = is_array(($vulnerability_check->get_parser_variables())) ? count($vulnerability_check->get_parser_variables()):0;
             $memory = intval(memory_get_usage() / 1024.0) - $memory;
             $total_num_vulnerabilities += $num_vulnerabilities;
-			
             $time = microtime(true) - $time_start;
             $total_time += $time;
 
@@ -257,10 +256,10 @@ _END;
                     }
                 }
             }
-            $count_files = count($php_file_list);
+            $count_files = is_array(($php_file_list)) ? count($php_file_list):0;
 
             $f_tokens = $vulnerability_check->get_files_tokens();
-            $num_files = count($vulnerability_check->get_files_tokens());
+            $num_files = is_array (($vulnerability_check->get_files_tokens()))? count($vulnerability_check->get_files_tokens()):0;
             $num_lines_of_code = 0;
             if (isset($f_tokens)) {
                 foreach ($f_tokens as $file_name => $dummy) {
@@ -274,7 +273,6 @@ _END;
                     $num_lines_of_code = $num_lines_of_code + $last_line;
                 }
             }
-			$total_num_lines_of_code += $num_lines_of_code;
 
             $bold = "";
             $bold_time = "";
@@ -291,9 +289,6 @@ _END;
 
             // get_vulnerable_variables | get_non_vulnerable_variables
             for ($type = 0; $type < 2; $type++) {
-				//$num_vulnerabilities_SQLi = 0;
-                //$num_vulnerabilities_XSS = 0;
-				
                 if ($type == 0) {
                     $typeV = $vulnerability_check->get_vulnerable_variables();
                     $csv_file_aux = $csv_file;
@@ -458,15 +453,11 @@ _END;
                             $sql_insert = "INSERT INTO vulnerabilities_phpSAFE(PHPI_PLUGIN, PHPI_FILE_BASE,PHPI_FILE_AND_DIR,PHPI_INDEX,PHPI_NAME,PHPI_OBJECT,PHPI_CLASS,PHPI_SCOPE,PHPI_VARIABLE_FUNCTION,PHPI_EXIST_DESTROYED,PHPI_CODE_TYPE,PHPI_INPUT,PHPI_OUTPUT,PHPI_FUNCTION,PHPI_FILE,PHPI_LINE,PHPI_TAINTED,PHPI_VULNERABILITY,PHPI_START_INDEX,PHPI_END_INDEX,PHPI_DEPENDENCIES_INDEX,PHPI_VARIABLE_FILTER,PHPI_VARIABLE_REVERT_FILTER, Data,Manually_verified, link, piece_of_code, execution_time,memory ) VALUES($sql_insert );";
                             fprintf($sql_file, "%s\n", $sql_insert) or die("Could not write to file");
                             if (($var0[_PHPI_VULNERABILITY] == "SQL Injection") || ($var0[_PHPI_VULNERABILITY] == "Possible SQL Injection")) {
-                                if ($type == 0) {
-									$num_vulnerabilities_SQLi++;
-									$total_num_vulnerabilities_SQLi++;
-								}
+                                $num_vulnerabilities_SQLi++;
+                                $total_num_vulnerabilities_SQLi++;
                             } else if (($var0[_PHPI_VULNERABILITY] == "Cross Site Scripting") || ($var0[_PHPI_VULNERABILITY] == "Possible Cross Site Scripting")) {
-                                if ($type == 0) {
-									$num_vulnerabilities_XSS++;
-									$total_num_vulnerabilities_XSS++;
-								}
+                                $num_vulnerabilities_XSS++;
+                                $total_num_vulnerabilities_XSS++;
                             }
                         }
                     }
@@ -485,8 +476,8 @@ _END;
             } else {
                 $output_text .= "<td>$num_vulnerabilities</td>";
             }
-            $output_text .= "<td>$num_vulnerabilities_XSS</td>";
-            $output_text .= "<td>$num_vulnerabilities_SQLi</td>";
+            //$output_text .= "<td>$num_vulnerabilities_XSS</td>";
+            //$output_text .= "<td>$num_vulnerabilities_SQLi</td>";
             $output_text .= "<td>" . sprintf('%11.3f', $time) . "</td>";
             $output_text .= "<td>$value</td>";
             $output_text .= "<td>$num_files</td>";
@@ -664,7 +655,7 @@ _END;
         $output_text .= "<td>" . sprintf('%11.3f', $total_time) . "</td>";
         $output_text .= "<td></td>";
         $output_text .= "<td>$count_files</td>";
-        $output_text .= "<td>$total_num_lines_of_code</td></tr>";
+        $output_text .= "<td>num_lines_of_code</td></tr>";
         fprintf($output_file, "%s\n", $output_text) or die("Could not write to file");
         fprintf($output_file, "%s\n", "</table>") or die("Could not write to file");
         fflush($output_file);
