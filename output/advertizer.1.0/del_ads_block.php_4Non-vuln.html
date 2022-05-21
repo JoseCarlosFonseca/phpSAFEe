@@ -1,0 +1,20 @@
+<script src='http://localhost:80/phpSAFE2e/jquery.js'/>      <script>
+         $(document).ready(function() {
+        $("td").mouseover(function() {
+          if (this.innerText)
+             $("td:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("td").mouseout(function() {
+          if (this.innerText)
+            $("td:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+        $("th").mouseover(function() {
+          if (this.innerText)
+           $("th:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("th").mouseout(function() {
+          if (this.innerText)
+            $("th:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+      });
+      </script><style>tr:nth-child(even) {background: #eee} tr:nth-child(odd) {background: #FFF} table, td, th {padding:4px; border: 1px solid black;border-collapse: collapse;}</style><h1 style='color:black;'>Non-vulnerable Variables</h1><p><span id='S_outputadvertizer10del_ads_blockphp_4Non-vulnhtml' onclick="var o = document.getElementById('outputadvertizer10del_ads_blockphp_4Non-vulnhtml'); if (o.style.display == 'block') {o.style.display = 'none'; document.getElementById(this.id).innerHTML = 'Show';} else { o.style.display = 'block';document.getElementById(this.id).innerHTML = 'Hide';}"style='border:1px solid black;padding:3px;background-color:#eee;'>Show</span> Count: 0</p><table id='outputadvertizer10del_ads_blockphp_4Non-vulnhtml' style='display:block;border:none;'>

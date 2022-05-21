@@ -1,0 +1,21 @@
+<script src='http://localhost:80/phpSAFE2e/jquery.js'/>      <script>
+         $(document).ready(function() {
+        $("td").mouseover(function() {
+          if (this.innerText)
+             $("td:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("td").mouseout(function() {
+          if (this.innerText)
+            $("td:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+        $("th").mouseover(function() {
+          if (this.innerText)
+           $("th:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("th").mouseout(function() {
+          if (this.innerText)
+            $("th:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+      });
+      </script><style>tr:nth-child(even) {background: #eee} tr:nth-child(odd) {background: #FFF} table, td, th {padding:4px; border: 1px solid black;border-collapse: collapse;}</style><h1 style='color:black;'>Vulnerable Variables</h1><p><span id='S_outputadvertizer10advertizerphp_2Vulnhtml' onclick="var o = document.getElementById('outputadvertizer10advertizerphp_2Vulnhtml'); if (o.style.display == 'block') {o.style.display = 'none'; document.getElementById(this.id).innerHTML = 'Show';} else { o.style.display = 'block';document.getElementById(this.id).innerHTML = 'Hide';}"style='border:1px solid black;padding:3px;background-color:#eee;'>Show</span> Count: 1</p><table id='outputadvertizer10advertizerphp_2Vulnhtml' style='display:block;border:none;'><tr><th>#</th> <th>Initial parsed file</th><th>index</th><th>name</th><th>object</th><th>class</th><th>scope</th><th>variable_function</th><th>exist_destroyed</th><th>code_type</th><th>input</th><th>output</th><th>function</th><th>file</th><th>line</th><th>tainted</th><th>vulnerability</th><th>start_index</th><th>end_index</th><th>dependencies_index</th><th>variable_filter</th><th>variable_revert_filter</th><th>sensitive_sink</th><th>sensitive_sink_vulnerability</th></tr><tr>
+<tr><td>0</td><td>advertizer.php</td><td >0  </td><td >$_SERVER[PHP_SELF]  </td><td >  </td><td >  </td><td >local  </td><td >variable  </td><td >exist  </td><td >php code  </td><td >input  </td><td >output  </td><td >add_ads_v_advert  </td><td ><a href='http://localhost:80/phpSAFE2e/show_php_file.php?file=C:\xampp74\htdocs\phpSAFE2e\source\advertizer.1.0\advertizer.php&line_mark=74&line_end=73&variable_name=%24_SERVER[PHP_SELF]&text=Vulnerable Variables&dependence_variables=YTozOntpOjA7czo3OiJSRVFVRVNUIjtpOjE7czo0OiJQT1NUIjtpOjI7czozOiJHRVQiO30%3D#target_mark'>C:\xampp74\htdocs\phpSAFE2e\source\advertizer.1.0\advertizer.php</a>  </td><td >74  </td><td style='color:red;'>tainted  </td><td style='background-color: orangered;'>Cross Site Scripting  </td><td >146  </td><td >149  </td><td >  </td><td >  </td><td >  </td><td >echo  </td><td style='background-color: orangered;'>Cross Site Scripting  </td><tr></table>

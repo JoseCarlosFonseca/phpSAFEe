@@ -1,0 +1,4 @@
+'source/ajaxgallery.3.0/ajaxgallery.php',
+'source/ajaxgallery.3.0/utils/content.php',
+'source/ajaxgallery.3.0/utils/list.php',
+'source/ajaxgallery.3.0/utils/options.php'

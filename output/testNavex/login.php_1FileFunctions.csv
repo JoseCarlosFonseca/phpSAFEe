@@ -1,0 +1,2 @@
+PHP_PLUGIN;PHPI_FILE_BASE;PHPI_SENSITIVE_SINK;PHPI_LINE;PHPI_SENSITIVE_SINK_VULNERABILITY;executed_function_that_calls_the_function;parameters;function_that_calls_the_function;PHPI_START_LINE;lines_of_code;url_link
+ource;testNavex/login.php;mysqli_query;5;SQL Injection;executed;$connection, $sql;function ($connection, $sql);1;5   $result = mysqli_query($connection, $sql)##;http://localhost:80/phpSAFE2e/show_php_file.php?file=C:/xampp74/htdocs/phpSAFE2e/source/testNavex/login.php&line_mark=5&line_end=5&variable_name=mysqli_query&text=File Functions#target_mark

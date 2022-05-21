@@ -1,0 +1,2 @@
+'source/testNavex/login.php',
+'source/testNavex/password.php'

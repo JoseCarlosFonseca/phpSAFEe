@@ -1,0 +1,5 @@
+'source/couponer.1.2/add-coupon.php',
+'source/couponer.1.2/couponer.php',
+'source/couponer.1.2/print-coupon.php',
+'source/couponer.1.2/process-coupon.php',
+'source/couponer.1.2/uninstall.php'

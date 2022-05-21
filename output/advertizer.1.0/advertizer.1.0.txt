@@ -1,0 +1,8 @@
+'source/advertizer.1.0/add_ads.php',
+'source/advertizer.1.0/advertizer.php',
+'source/advertizer.1.0/click_ads.php',
+'source/advertizer.1.0/del_ads_block.php',
+'source/advertizer.1.0/get_image_size.php',
+'source/advertizer.1.0/js/advertizer.js.php',
+'source/advertizer.1.0/print_ads_block.php',
+'source/advertizer.1.0/upd_ads.php'

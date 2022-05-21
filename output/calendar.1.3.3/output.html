@@ -1,0 +1,29 @@
+<h1>Test was done on -VOD16_</h1> 
+ 				<script src='http://localhost:80/phpSAFE2e/jquery.js'/>
+				<script src='../../jquery.js'/>
+      <script>
+         $(document).ready(function() {
+        $("td").mouseover(function() {
+          if (this.innerText)
+             $("td:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("td").mouseout(function() {
+          if (this.innerText)
+            $("td:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+        $("th").mouseover(function() {
+          if (this.innerText)
+           $("th:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("th").mouseout(function() {
+          if (this.innerText)
+            $("th:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+      });
+      </script> 
+<table>
+<style>table, td, th {padding:4px; border: 1px solid black;border-collapse: collapse;}</style><tr><td>#</td><td>plugin</td><td>parsed_file_ini</td><td>parsed_file</td><td>Total Vulns</td><td>XSS</td><td>SQLi</td><td>time</td><td>value</td><td>#files</td><td>SLOC</td></tr>
+<tr><td>1</td><td>calendar.1.3.3</td><td>calendar.php</td><td>AFE2e/source/calendar.1.3.3/calendar.php</td><td style='color:red'>25</td><td>      6.555</td><td>source/calendar.1.3.3/calendar.php</td><td>1</td><td>3109</td></tr>
+<tr><td></td><td></td><td></td><td></td><td style='color:red'>25</td><td>50</td><td>0</td><td>      6.555</td><td></td><td>1</td><td>num_lines_of_code</td></tr>
+</table>
+<tr><td></td><td></td><td></td><td></td><td style='color:red'>25</td><td>50</td><td>0</td><td>      6.555</td><td></td><td>1</td><td>num_lines_of_code</td></tr>

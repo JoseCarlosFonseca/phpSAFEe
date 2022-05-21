@@ -1,0 +1,21 @@
+<script src='http://localhost:80/phpSAFE2e/jquery.js'/>      <script>
+         $(document).ready(function() {
+        $("td").mouseover(function() {
+          if (this.innerText)
+             $("td:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("td").mouseout(function() {
+          if (this.innerText)
+            $("td:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+        $("th").mouseover(function() {
+          if (this.innerText)
+           $("th:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("th").mouseout(function() {
+          if (this.innerText)
+            $("th:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+      });
+      </script><style>tr:nth-child(even) {background: #eee} tr:nth-child(odd) {background: #FFF} table, td, th {padding:4px; border: 1px solid black;border-collapse: collapse;}</style><h1 style='color:black;'>Vulnerable Variables</h1><p><span id='S_outputcouponer12print-couponphp_3Vulnhtml' onclick="var o = document.getElementById('outputcouponer12print-couponphp_3Vulnhtml'); if (o.style.display == 'block') {o.style.display = 'none'; document.getElementById(this.id).innerHTML = 'Show';} else { o.style.display = 'block';document.getElementById(this.id).innerHTML = 'Hide';}"style='border:1px solid black;padding:3px;background-color:#eee;'>Show</span> Count: 1</p><table id='outputcouponer12print-couponphp_3Vulnhtml' style='display:block;border:none;'><tr><th>#</th> <th>Initial parsed file</th><th>index</th><th>name</th><th>object</th><th>class</th><th>scope</th><th>variable_function</th><th>exist_destroyed</th><th>code_type</th><th>input</th><th>output</th><th>function</th><th>file</th><th>line</th><th>tainted</th><th>vulnerability</th><th>start_index</th><th>end_index</th><th>dependencies_index</th><th>variable_filter</th><th>variable_revert_filter</th><th>sensitive_sink</th><th>sensitive_sink_vulnerability</th></tr><tr>
+<tr><td>0</td><td>print-coupon.php</td><td >7  </td><td >$sql_get_coupon_id  </td><td >  </td><td >  </td><td >local  </td><td >variable  </td><td >exist  </td><td >php code  </td><td >regular  </td><td >output  </td><td >function  </td><td ><a href='http://localhost:80/phpSAFE2e/show_php_file.php?file=C:\xampp74\htdocs\phpSAFE2e\source\couponer.1.2\print-coupon.php&line_mark=10&line_end=9&variable_name=%24sql_get_coupon_id&text=Vulnerable Variables&dependence_variables=YTo0OntpOjA7czo3OiJSRVFVRVNUIjtpOjE7czo0OiJQT1NUIjtpOjI7czozOiJHRVQiO2k6MztzOjIwOiIlMjRzcWxfZ2V0X2NvdXBvbl9pZCI7fQ%3D%3D#target_mark'>C:\xampp74\htdocs\phpSAFE2e\source\couponer.1.2\print-coupon.php</a>  </td><td >10  </td><td style='color:red;'>tainted  </td><td style='background-color: lightgreen;'>SQL Injection  </td><td >38  </td><td >38  </td><td><table><tr><td>4</td></tr></table></td><td >  </td><td >  </td><td >mysql_query  </td><td style='background-color: lightgreen;'>SQL Injection  </td><tr></table>

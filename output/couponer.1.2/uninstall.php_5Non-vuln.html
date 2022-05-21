@@ -1,0 +1,21 @@
+<script src='http://localhost:80/phpSAFE2e/jquery.js'/>      <script>
+         $(document).ready(function() {
+        $("td").mouseover(function() {
+          if (this.innerText)
+             $("td:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("td").mouseout(function() {
+          if (this.innerText)
+            $("td:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+        $("th").mouseover(function() {
+          if (this.innerText)
+           $("th:contains(" + this.innerText + ")").css("background-color", "orange");
+        });
+        $("th").mouseout(function() {
+          if (this.innerText)
+            $("th:contains(" + this.innerText + ")").css("background-color", "white");
+        });
+      });
+      </script><style>tr:nth-child(even) {background: #eee} tr:nth-child(odd) {background: #FFF} table, td, th {padding:4px; border: 1px solid black;border-collapse: collapse;}</style><h1 style='color:black;'>Non-vulnerable Variables</h1><p><span id='S_outputcouponer12uninstallphp_5Non-vulnhtml' onclick="var o = document.getElementById('outputcouponer12uninstallphp_5Non-vulnhtml'); if (o.style.display == 'block') {o.style.display = 'none'; document.getElementById(this.id).innerHTML = 'Show';} else { o.style.display = 'block';document.getElementById(this.id).innerHTML = 'Hide';}"style='border:1px solid black;padding:3px;background-color:#eee;'>Show</span> Count: 1</p><table id='outputcouponer12uninstallphp_5Non-vulnhtml' style='display:block;border:none;'><tr><th>#</th> <th>Initial parsed file</th><th>index</th><th>name</th><th>object</th><th>class</th><th>scope</th><th>variable_function</th><th>exist_destroyed</th><th>code_type</th><th>input</th><th>output</th><th>function</th><th>file</th><th>line</th><th>tainted</th><th>vulnerability</th><th>start_index</th><th>end_index</th><th>dependencies_index</th><th>variable_filter</th><th>variable_revert_filter</th><th>sensitive_sink</th><th>sensitive_sink_vulnerability</th></tr><tr>
+<tr><td>0</td><td>uninstall.php</td><td >3  </td><td >$couponer  </td><td >  </td><td >  </td><td >local  </td><td >variable  </td><td >exist  </td><td >php code  </td><td >regular  </td><td >output  </td><td >function  </td><td ><a href='http://localhost:80/phpSAFE2e/show_php_file.php?file=C:\xampp74\htdocs\phpSAFE2e\source\couponer.1.2\uninstall.php&line_mark=5&line_end=4&variable_name=%24couponer&text=Non-vulnerable Variables&dependence_variables=YTo0OntpOjA7czo3OiJSRVFVRVNUIjtpOjE7czo0OiJQT1NUIjtpOjI7czozOiJHRVQiO2k6MztzOjExOiIlMjRjb3Vwb25lciI7fQ%3D%3D#target_mark'>C:\xampp74\htdocs\phpSAFE2e\source\couponer.1.2\uninstall.php</a>  </td><td >5  </td><td >untainted  </td><td >unknown  </td><td >18  </td><td >18  </td><td><table><tr><td>1</td></tr></table></td><td >  </td><td >  </td><td >$wpdb->query  </td><td style='background-color: lightgreen;'>SQL Injection  </td><tr></table>
