@@ -1,0 +1,9 @@
+.turn_on{
+color:green;
+}
+.turn_off{
+color:red;
+}
+#param_list span{
+font-weight:bold;
+}

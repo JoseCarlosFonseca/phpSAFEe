@@ -1,0 +1,90 @@
+/**
+File Name: gallery.css
+Plugin Name: ajaxGallery
+Plugin URI: http://www.laciudadx.com/trabajos/ajaxgallery
+Description: Ajax + Picasa + Thickbox
+Author: Sergio Ceron Figueroa
+Version: 3.0
+Author URI: http://www.laciudadx.com
+
+Copyright (C) 2007 Sergio Ceron F. (http://laciudadx.com)
+    
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+.ajax_gallery_c{
+	font-family:Trebuchet MS,Verdana, Arial;
+	font-size:12px;
+	font-color:#000;
+}
+.ajax_gallery_c img{
+	border:1px solid #000;
+	cursor:pointer;
+}
+
+.ajax_gallery_c table td{
+	padding:10px;
+	text-align:center;
+	vertical-align:bottom;
+}
+
+.ajax_gallery_c .pagination a:hover{
+	color:#000;
+}
+
+.ajax_gallery_c .wp_date{
+	color:#aaa;
+	font-size:11px;
+}
+
+.ajax_gallery_c table{
+	font-size:12px;
+}
+
+.ajax_gallery_c .pag{
+	font-color:#036;
+	background-color:#eee;
+	cursor:pointer;
+	display:inline;
+	padding-right:4px;
+	padding-left:4px;
+}
+
+.ajax_gallery_c .pagsel{
+	font-color:#036;
+	font-weight:bolder;
+	background-color:#fff;
+	display:inline;
+	padding-right:4px;
+	padding-left:4px;
+}
+
+.ajax_gallery_c .pagination{
+	border: 1px solid #ddd;
+	background-color:#eee;
+	text-align:center;
+	cursor: pointer;
+}
+.ajax_gallery_c a{
+	cursor: pointer;
+}
+.ajax_gallery_c .wp_img{
+	cursor:pointer;
+}
+/* Loading */
+#loading_ajaxgallery{
+	display: none;
+	float: center;
+}
